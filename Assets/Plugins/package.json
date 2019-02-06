@@ -1,0 +1,12 @@
+{
+    "name": "com.rabbitstewdio.unitytutorialsystem",
+    "displayName": "Unity Tutorial System",
+    "version": "0.0.1",
+    "unity": "2018.3",
+    "description": "A event driven system to implement in-game tutorials and success and failure trackers.",
+    "keywords": [
+        "in-game tutorials",
+        "unity"
+    ],
+    "category": "Unity"
+}

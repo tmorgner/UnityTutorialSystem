@@ -1,0 +1,17 @@
+
+
+piano.wav: 
+
+  Created by lomographicmusic, licensed under CC-BY 3.0 license.
+  https://freesound.org/people/lomographicmusic/sounds/382482/
+
+slam.wav:  
+
+  Created by Goup_1, licensed under CC-BY 3.0 license.
+  https://freesound.org/people/Goup_1/sounds/176532/
+  
+tada3.mp3:
+
+  Created by usinggarageband, licensed under CC-BY 3.0 license.
+  https://freesound.org/people/usinggarageband/sounds/152574/  
+  

@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efa5601f9e59ab4990baf4ac245a6dc, type: 3}
+  m_Name: DemonstrationEventStream
+  m_EditorClassIdentifier: 
+  messageTypes:
+  - Button A
+  - Button B
+  - Button C
+  - Button D
+  - Button E
+  - Melody Complete
+  - Button Pressed
+  - Button Pressed Complete
+  - Tasks Complete
+--- !u!114 &114087278996602626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button A
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114237395628351686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button D
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114295595302332938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Melody Complete
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114453565588672230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Tasks Complete
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114505920661840866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button C
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114531965955044376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button B
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114683655999235588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button Pressed
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114969602861105628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button Pressed Complete
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
+--- !u!114 &114979598298759166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83707740ea9a4854b2b1651e53c42c0b, type: 3}
+  m_Name: Button E
+  m_EditorClassIdentifier: 
+  stream: {fileID: 11400000}
