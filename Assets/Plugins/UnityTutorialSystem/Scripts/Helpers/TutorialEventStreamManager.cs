@@ -197,7 +197,7 @@ namespace TutorialSystem.Helpers
                 }
                 else
                 {
-                    var message = Convert(s.Message);
+                    var message = (s.Message);
                     childStates.Add(new TutorialEventStateData(message, s.Completed, s.ExpectedNext));
                 }
             }
@@ -236,13 +236,13 @@ namespace TutorialSystem.Helpers
         {
             public readonly List<EventMessageState> RequiredMessages;
             public readonly TutorialEventStatePublisher MessageSource;
-            public readonly TutorialEventMessage SuccessMessage;
+            public readonly BasicEventStreamMessage SuccessMessage;
             public readonly HashSet<ExpectedStates> Dependencies;
             readonly bool debug;
 
             public ExpectedStates(TutorialEventStatePublisher message,
-                                  TutorialEventMessage successMessage,
-                                  List<EventMessageState> requiredMessages, 
+                                  BasicEventStreamMessage successMessage,
+                                  List<EventMessageState> requiredMessages,
                                   bool debug)
             {
                 MessageSource = message;

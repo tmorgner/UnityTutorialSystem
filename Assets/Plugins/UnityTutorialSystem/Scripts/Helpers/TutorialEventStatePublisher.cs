@@ -13,7 +13,7 @@ namespace TutorialSystem.Helpers
     public class TutorialEventStatePublisher : StreamEventSource
     {
         [SerializeField] EventMessageAggregator stateChain;
-        [SerializeField] TutorialEventMessage successMessage;
+        [SerializeField] BasicEventStreamMessage successMessage;
         [SerializeField] TutorialProgressEvent stateChanged;
 
         public TutorialEventStatePublisher()
@@ -22,7 +22,7 @@ namespace TutorialSystem.Helpers
         }
 
         public TutorialProgressEvent StateChanged => stateChanged;
-        public TutorialEventMessage SuccessMessage => successMessage;
+        public BasicEventStreamMessage SuccessMessage => successMessage;
 
         public EventMessageMatcherState MatchResult => stateChain.MatchResult;
 

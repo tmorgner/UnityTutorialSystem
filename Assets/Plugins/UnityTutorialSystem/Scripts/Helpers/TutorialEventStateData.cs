@@ -12,7 +12,7 @@ namespace TutorialSystem.Helpers
     {
         readonly List<TutorialEventStateData> subTasks;
 
-        public TutorialEventStateData(TutorialEventMessage sourceMessage,
+        public TutorialEventStateData(BasicEventStreamMessage sourceMessage,
                                       bool completed,
                                       bool expectedNext,
                                       IReadOnlyList<TutorialEventStateData> data)
@@ -23,11 +23,11 @@ namespace TutorialSystem.Helpers
             subTasks = new List<TutorialEventStateData>(data);
         }
 
-        public TutorialEventStateData(TutorialEventMessage sourceMessage,
+        public TutorialEventStateData(BasicEventStreamMessage sourceMessage,
                                       bool completed,
                                       bool expectedNext,
                                       params TutorialEventStateData[] data) :
-            this(sourceMessage, completed, expectedNext, (IReadOnlyList<TutorialEventStateData>) data)
+            this(sourceMessage, completed, expectedNext, (IReadOnlyList<TutorialEventStateData>)data)
         {
         }
 
@@ -96,7 +96,7 @@ namespace TutorialSystem.Helpers
                 return false;
             }
 
-            return Equals((TutorialEventStateData) obj);
+            return Equals((TutorialEventStateData)obj);
         }
 
         public override int GetHashCode()
