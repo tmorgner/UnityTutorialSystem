@@ -17,6 +17,7 @@ namespace TutorialSystem.Scenes.Scripts
         [SerializeField] bool invertHeadLook;
         CharacterController characterController;
         [SerializeField] Transform head;
+        [SerializeField] bool mouseMovement;
         public UnityEvent MovementBlocked;
         public UnityEvent Moving;
 
@@ -49,7 +50,7 @@ namespace TutorialSystem.Scenes.Scripts
         void FixedUpdate()
         {
             var h = Input.GetAxis("Horizontal");
-            if (!independentHeadMovement)
+            if (mouseMovement && !independentHeadMovement)
             {
                 h += Input.GetAxis("Mouse X");
             }
@@ -74,7 +75,10 @@ namespace TutorialSystem.Scenes.Scripts
                 transform.Rotate(Vector3.up, h * rotationSpeed * Time.fixedDeltaTime);
             }
 
-            HandleMouseLook();
+            if (mouseMovement)
+            {
+                HandleMouseLook();
+            }
 
             MovementResult = characterController.Move(velocity);
 
