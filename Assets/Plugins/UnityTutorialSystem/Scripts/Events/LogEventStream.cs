@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public class LogEventStream : MonoBehaviour
     {

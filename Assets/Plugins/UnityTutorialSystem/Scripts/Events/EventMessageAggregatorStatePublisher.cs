@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using TutorialSystem.Aggregators;
-using TutorialSystem.Events;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityTutorialSystem.Aggregators;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Events
 {
     public class EventMessageAggregatorStatePublisher : StreamEventSource
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
-using TutorialSystem.Events;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Aggregators
+namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
     ///     A event sequence matcher. The matcher checks incoming events against a

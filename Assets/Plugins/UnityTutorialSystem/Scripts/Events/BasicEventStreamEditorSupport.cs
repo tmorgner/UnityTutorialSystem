@@ -6,7 +6,7 @@ using UnityEngine;
 
 #endif
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public static class BasicEventStreamEditorSupport
     {

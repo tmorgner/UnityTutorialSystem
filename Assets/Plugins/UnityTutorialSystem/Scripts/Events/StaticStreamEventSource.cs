@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public class StaticStreamEventSource : StreamEventSource
     {

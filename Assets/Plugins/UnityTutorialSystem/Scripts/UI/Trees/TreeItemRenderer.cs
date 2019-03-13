@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TutorialSystem.UI.Trees
+namespace UnityTutorialSystem.UI.Trees
 {
     /// <summary>
     ///     Abstract because its unity

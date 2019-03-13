@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public class BasicEventStreamMessage : ScriptableObject
     {

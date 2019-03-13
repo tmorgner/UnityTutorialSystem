@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TutorialSystem.UI.Trees
+namespace UnityTutorialSystem.UI.Trees
 {
     public static class TreePath
     {

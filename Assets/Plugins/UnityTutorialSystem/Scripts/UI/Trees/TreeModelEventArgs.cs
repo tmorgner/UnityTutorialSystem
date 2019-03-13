@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TutorialSystem.UI.Trees
+namespace UnityTutorialSystem.UI.Trees
 {
     public class TreeModelEventArgs<TNode> : EventArgs
     {

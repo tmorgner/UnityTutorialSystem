@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TutorialSystem.UI.Trees
+namespace UnityTutorialSystem.UI.Trees
 {
     public interface ITreeModel<TNode>
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public abstract class StreamEventSource : MonoBehaviour
     {

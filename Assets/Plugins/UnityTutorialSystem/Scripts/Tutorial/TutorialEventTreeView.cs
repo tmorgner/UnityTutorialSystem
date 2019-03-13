@@ -1,7 +1,7 @@
-﻿using TutorialSystem.UI.Trees;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityTutorialSystem.UI.Trees;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Tutorial
 {
     public class TutorialEventTreeView : TreeView<TutorialEventStateData>
     {

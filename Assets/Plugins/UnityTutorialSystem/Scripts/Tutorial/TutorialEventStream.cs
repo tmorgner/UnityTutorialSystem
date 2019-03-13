@@ -1,7 +1,7 @@
-﻿using TutorialSystem.Events;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Tutorial
 {
     [CreateAssetMenu(menuName = "Event Stream/Tutorial Event Stream")]
     public class TutorialEventStream : BasicEventStream

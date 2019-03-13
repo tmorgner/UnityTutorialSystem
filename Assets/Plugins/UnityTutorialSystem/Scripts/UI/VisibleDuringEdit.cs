@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TutorialSystem.UI
+namespace UnityTutorialSystem.UI
 {
     /// <summary>
     ///     A small helper that deactivates template elements when not in the editor.

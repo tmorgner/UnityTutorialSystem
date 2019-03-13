@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TutorialSystem.UI.Trees
+namespace UnityTutorialSystem.UI.Trees
 {
     public class ListTreeModel<TList> : TreeModel<TList> where TList : class, IReadOnlyList<TList>
     {

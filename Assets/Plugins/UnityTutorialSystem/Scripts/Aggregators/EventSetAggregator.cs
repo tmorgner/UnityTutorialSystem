@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using TutorialSystem.Events;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Aggregators
+namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
     ///     A aggregator that waits for all events to occur. The events can

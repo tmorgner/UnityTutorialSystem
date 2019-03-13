@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using NaughtyAttributes;
-using TutorialSystem.Events;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Aggregators
+namespace UnityTutorialSystem.Aggregators
 {
     public class MatchProgressEvent : UnityEvent<EventMessageAggregator, BasicEventStreamMessage>
     {

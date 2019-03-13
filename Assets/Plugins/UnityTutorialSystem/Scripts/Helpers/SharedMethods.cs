@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TutorialSystem
+namespace UnityTutorialSystem.Helpers
 {
     /// <summary>
     ///     Copied from VRTK_SharedMethods class (MIT License).

@@ -1,11 +1,11 @@
 ﻿using System;
 using TMPro;
-using TutorialSystem.Events;
-using TutorialSystem.UI.Trees;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityTutorialSystem.Events;
+using UnityTutorialSystem.UI.Trees;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Tutorial
 {
     public class TutorialEventTreeItemRenderer : TreeItemRenderer<TutorialEventStateData>
     {

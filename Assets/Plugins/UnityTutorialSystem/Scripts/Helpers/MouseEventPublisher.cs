@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Helpers
 {
     public class MouseEventPublisher : MonoBehaviour
     {

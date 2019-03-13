@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TutorialSystem.Events;
 using UnityEngine.Events;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Aggregators
+namespace UnityTutorialSystem.Aggregators
 {
     public enum EventMessageMatcherState
     {

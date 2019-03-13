@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     /// <summary>
     ///     A event stream receives and aggregates preconfigured messages.

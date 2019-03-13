@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
-using TutorialSystem.Aggregators;
-using TutorialSystem.Events;
-using TutorialSystem.UI.Trees;
 using UnityEngine;
+using UnityTutorialSystem.Aggregators;
+using UnityTutorialSystem.Events;
+using UnityTutorialSystem.UI.Trees;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Tutorial
 {
     public class TutorialEventStreamManager : MonoBehaviour
     {

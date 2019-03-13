@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     /// <summary>
     ///     This class exists as an trigger to fire events from UnityEvent bindings.

@@ -1,7 +1,6 @@
-﻿using TutorialSystem.Aggregators;
-using TutorialSystem.Events;
+﻿using UnityTutorialSystem.Aggregators;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Events
 {
     public class NextEventAggregationActivator : NextEventSelectorBase
     {

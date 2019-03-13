@@ -1,9 +1,9 @@
 ﻿using System;
 using NaughtyAttributes;
-using TutorialSystem.Events;
 using UnityEngine;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Tutorial
 {
     public enum TutorialEventState
     {

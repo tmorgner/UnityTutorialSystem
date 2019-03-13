@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using TutorialSystem.Aggregators;
 using UnityEngine;
+using UnityTutorialSystem.Aggregators;
+using UnityTutorialSystem.Helpers;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public abstract class NextEventSelectorBase : MonoBehaviour
     {

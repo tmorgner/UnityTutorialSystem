@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TutorialSystem.Events;
 using UnityEngine;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Aggregators
+namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
     ///     A simple example of an aggregator function. This behaviour listens for

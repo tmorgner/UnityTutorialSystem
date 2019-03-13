@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace TutorialSystem.Events
+namespace UnityTutorialSystem.Events
 {
     public class NextEventSelector : NextEventSelectorBase
     {

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TutorialSystem.Events;
+using UnityTutorialSystem.Events;
 
-namespace TutorialSystem.Helpers
+namespace UnityTutorialSystem.Tutorial
 {
     public class TutorialEventStateData : IReadOnlyList<TutorialEventStateData>,
                                           IEquatable<TutorialEventStateData>
