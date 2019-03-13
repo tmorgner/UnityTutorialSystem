@@ -1,18 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace TutorialSystem.Events
 {
-    [CreateAssetMenu(menuName = "Event Stream/Logging")]
-    public class LogEventStream : ScriptableObject
+    public class LogEventStream : MonoBehaviour
     {
         [SerializeField] BasicEventStream stream;
         [SerializeField] bool enabled;
+        readonly UnityAction<BasicEventStreamMessage> messageHandler;
+
+        public LogEventStream()
+        {
+            messageHandler = OnEventReceived;
+        }
 
         void OnDisable()
         {
             if (stream != null)
             {
-                stream.ReceivedEvent.RemoveListener(OnEventReceived);
+                stream.ReceivedEvent.RemoveListener(messageHandler);
+            }
+        }
+
+        void OnEnable()
+        {
+            if (stream != null)
+            {
+                stream.ReceivedEvent.AddListener(messageHandler);
             }
         }
 
@@ -24,12 +39,5 @@ namespace TutorialSystem.Events
             }
         }
 
-        void OnEnable()
-        {
-            if (stream != null)
-            {
-                stream.ReceivedEvent.AddListener(OnEventReceived);
-            }
-        }
     }
 }

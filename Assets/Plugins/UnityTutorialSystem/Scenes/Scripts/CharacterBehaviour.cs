@@ -15,9 +15,9 @@ namespace TutorialSystem.Scenes.Scripts
         [SerializeField] float rotationSpeed;
         [SerializeField] bool independentHeadMovement;
         [SerializeField] bool invertHeadLook;
-        CharacterController characterController;
         [SerializeField] Transform head;
         [SerializeField] bool mouseMovement;
+        CharacterController characterController;
         public UnityEvent MovementBlocked;
         public UnityEvent Moving;
 
