@@ -6,22 +6,22 @@ using UnityEngine.Events;
 
 namespace TutorialSystem.Helpers
 {
-    public class TutorialProgressEvent : UnityEvent<TutorialEventStatePublisher, BasicEventStreamMessage>
+    public class EventMessageAggregatorStatePublisher : StreamEventSource
     {
-    }
-
-    public class TutorialEventStatePublisher : StreamEventSource
-    {
-        [SerializeField] EventMessageAggregator stateChain;
-        [SerializeField] BasicEventStreamMessage successMessage;
-        [SerializeField] TutorialProgressEvent stateChanged;
-
-        public TutorialEventStatePublisher()
+        public class ProgressEvent : UnityEvent<EventMessageAggregatorStatePublisher, BasicEventStreamMessage>
         {
-            stateChanged = new TutorialProgressEvent();
         }
 
-        public TutorialProgressEvent StateChanged => stateChanged;
+        [SerializeField] EventMessageAggregator stateChain;
+        [SerializeField] BasicEventStreamMessage successMessage;
+        [SerializeField] ProgressEvent stateChanged;
+
+        public EventMessageAggregatorStatePublisher()
+        {
+            stateChanged = new ProgressEvent();
+        }
+
+        public ProgressEvent StateChanged => stateChanged;
         public BasicEventStreamMessage SuccessMessage => successMessage;
 
         public EventMessageMatcherState MatchResult => stateChain.MatchResult;

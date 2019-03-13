@@ -7,7 +7,6 @@ namespace TutorialSystem.UI
     ///     Template elements are instantiated via a script, which also takes care of
     ///     setting the newly instantiated game object active.
     /// </summary>
-    [ExecuteInEditMode]
     public class VisibleDuringEdit : MonoBehaviour
     {
         void Awake()

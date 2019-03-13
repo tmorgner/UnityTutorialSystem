@@ -11,10 +11,12 @@ namespace TutorialSystem.Helpers
     public class TutorialEventStreamManager : MonoBehaviour
     {
         readonly List<EventMessageState> buffer;
-        [SerializeField] [ReorderableList] List<TutorialEventStatePublisher> tutorialStateTrackers;
+
+        [SerializeField] [ReorderableList] List<EventMessageAggregatorStatePublisher> tutorialStateTrackers;
         [SerializeField] TutorialEventTreeView tutorialSteps;
         [SerializeField] bool debug;
-        Dictionary<TutorialEventStatePublisher, TutorialEventStateData> nodeMapper;
+
+        Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper;
         TutorialEventStateData rootNode;
         bool started;
 
@@ -35,7 +37,7 @@ namespace TutorialSystem.Helpers
 
         void Start()
         {
-            nodeMapper = new Dictionary<TutorialEventStatePublisher, TutorialEventStateData>();
+            nodeMapper = new Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData>();
             started = true;
 
             var data = CollectTreeData();
@@ -66,7 +68,7 @@ namespace TutorialSystem.Helpers
             }
         }
 
-        void OnTrackerStateChanged(TutorialEventStatePublisher source, BasicEventStreamMessage message = null)
+        void OnTrackerStateChanged(EventMessageAggregatorStatePublisher source, BasicEventStreamMessage message = null)
         {
             if (!started)
             {
@@ -139,7 +141,7 @@ namespace TutorialSystem.Helpers
         }
 
         TutorialEventStateData CreateTreeNodes(List<ExpectedStates> data,
-                                               Dictionary<TutorialEventStatePublisher, TutorialEventStateData> nodeMapper)
+                                               Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper)
         {
             var roots = data.Where(s => !s.IsDependency).ToList();
             var childStates = new List<TutorialEventStateData>();
@@ -183,7 +185,7 @@ namespace TutorialSystem.Helpers
         }
 
         static TutorialEventStateData AddTree(ExpectedStates state,
-                                              Dictionary<TutorialEventStatePublisher, TutorialEventStateData> nodeMapper)
+                                              Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper)
         {
             var childStates = new List<TutorialEventStateData>();
             foreach (var s in state.RequiredMessages)
@@ -235,12 +237,12 @@ namespace TutorialSystem.Helpers
         class ExpectedStates
         {
             public readonly List<EventMessageState> RequiredMessages;
-            public readonly TutorialEventStatePublisher MessageSource;
+            public readonly EventMessageAggregatorStatePublisher MessageSource;
             public readonly BasicEventStreamMessage SuccessMessage;
             public readonly HashSet<ExpectedStates> Dependencies;
             readonly bool debug;
 
-            public ExpectedStates(TutorialEventStatePublisher message,
+            public ExpectedStates(EventMessageAggregatorStatePublisher message,
                                   BasicEventStreamMessage successMessage,
                                   List<EventMessageState> requiredMessages,
                                   bool debug)

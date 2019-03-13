@@ -1,5 +1,4 @@
 ﻿using System;
-using NaughtyAttributes;
 using TMPro;
 using TutorialSystem.Events;
 using TutorialSystem.UI.Trees;
@@ -184,7 +183,7 @@ namespace TutorialSystem.Helpers
                 if (layout != null)
                 {
                     var padding = layout.padding;
-                    layout.padding = new RectOffset((int) indentSpacing, padding.top, padding.right, padding.bottom);
+                    layout.padding = new RectOffset((int)indentSpacing, padding.top, padding.right, padding.bottom);
                 }
                 rt.anchoredPosition = new Vector2(anchor.x + indentSpacing, anchor.y);
             }

@@ -7,7 +7,7 @@ namespace TutorialSystem.Events
     public class LogEventStream : MonoBehaviour
     {
         [SerializeField] BasicEventStream stream;
-        [SerializeField] bool enabled;
+        [SerializeField] bool printMessages;
         readonly UnityAction<BasicEventStreamMessage> messageHandler;
 
         public LogEventStream()
@@ -33,7 +33,7 @@ namespace TutorialSystem.Events
 
         void OnEventReceived(BasicEventStreamMessage message)
         {
-            if (enabled)
+            if (printMessages)
             {
                 Debug.Log(message);
             }
