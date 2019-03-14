@@ -8,11 +8,11 @@ namespace UnityTutorialSystem.Tutorial
         [SerializeField] TutorialEventTreeItemRenderer template;
         [SerializeField] bool showAllNodes;
         [SerializeField] bool hideCompletedSubTrees;
-        ListTreeModel<TutorialEventStateData> model;
+        ITreeModel<TutorialEventStateData> model;
 
         protected override TreeItemRenderer<TutorialEventStateData> ItemRenderer => template;
 
-        public ListTreeModel<TutorialEventStateData> Model
+        public ITreeModel<TutorialEventStateData> Model
         {
             get { return model; }
             set

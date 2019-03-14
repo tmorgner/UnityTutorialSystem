@@ -3014,6 +3014,31 @@ PrefabInstance:
       propertyPath: defaultColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114551943447470984, guid: 154207b2fe8edf6469479d563d3e8e59,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551943447470984, guid: 154207b2fe8edf6469479d563d3e8e59,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551943447470984, guid: 154207b2fe8edf6469479d563d3e8e59,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551943447470984, guid: 154207b2fe8edf6469479d563d3e8e59,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551943447470984, guid: 154207b2fe8edf6469479d563d3e8e59,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 154207b2fe8edf6469479d563d3e8e59, type: 3}
 --- !u!1 &1299307870
@@ -4492,6 +4517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2005220181}
   - component: {fileID: 2005220182}
+  - component: {fileID: 2005220183}
   m_Layer: 0
   m_Name: StateHandlers
   m_TagString: Untagged
@@ -4532,8 +4558,21 @@ MonoBehaviour:
   - {fileID: 168782042}
   - {fileID: 1771014852}
   - {fileID: 121474010}
-  tutorialSteps: {fileID: 2004723108}
   debug: 0
+--- !u!114 &2005220183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005220180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba432f912c64ce291ce3be12de22190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelSource: {fileID: 2005220182}
+  treeView: {fileID: 2004723108}
 --- !u!1 &2089696629
 GameObject:
   m_ObjectHideFlags: 0

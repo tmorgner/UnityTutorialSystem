@@ -64,22 +64,22 @@ namespace UnityTutorialSystem.UI.Trees
             }
         }
 
-        void OnStructureChanged(object sender, TreeModelEventArgs<T> e)
+        protected virtual void OnStructureChanged(object sender, TreeModelEventArgs<T> e)
         {
             OnModelUpdated();
         }
 
-        void OnNodesRemoved(object sender, TreeModelEventArgs<T> e)
+        protected virtual void OnNodesRemoved(object sender, TreeModelEventArgs<T> e)
         {
             OnModelUpdated();
         }
 
-        void OnNodesInserted(object sender, TreeModelEventArgs<T> e)
+        protected virtual void OnNodesInserted(object sender, TreeModelEventArgs<T> e)
         {
             OnModelUpdated();
         }
 
-        void OnNodesChanged(object sender, TreeModelEventArgs<T> e)
+        protected virtual void OnNodesChanged(object sender, TreeModelEventArgs<T> e)
         {
             OnModelUpdated();
         }
@@ -109,7 +109,7 @@ namespace UnityTutorialSystem.UI.Trees
             }
         }
 
-        int RefreshNodes(TreePath<T> node, int nextNodeIndexInPool, bool visible)
+        protected virtual int RefreshNodes(TreePath<T> node, int nextNodeIndexInPool, bool visible)
         {
             while (pool.Count <= nextNodeIndexInPool)
             {
@@ -149,7 +149,7 @@ namespace UnityTutorialSystem.UI.Trees
             return true;
         }
 
-        TreeItemRenderer<T> InstantiateRenderer()
+        protected virtual TreeItemRenderer<T> InstantiateRenderer()
         {
             var itemRenderer = Instantiate(ItemRenderer);
             var rtransform = itemRenderer.transform;

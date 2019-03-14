@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace UnityTutorialSystem.UI.Trees
 {
     public class ListTreeModel<TList> : TreeModel<TList> where TList : class, IReadOnlyList<TList>
     {
+        public ListTreeModel()
+        {
+        }
+
         public ListTreeModel(TList root)
         {
-            if (root == null)
-            {
-                throw new ArgumentNullException(nameof(root));
-            }
-
             Root = root;
         }
 

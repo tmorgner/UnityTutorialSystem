@@ -13,9 +13,9 @@ namespace UnityTutorialSystem.Tutorial
         readonly List<EventMessageState> buffer;
 
         [SerializeField] [ReorderableList] List<EventMessageAggregatorStatePublisher> tutorialStateTrackers;
-        [SerializeField] TutorialEventTreeView tutorialSteps;
         [SerializeField] bool debug;
 
+        ListTreeModel<TutorialEventStateData> model;
         Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper;
         TutorialEventStateData rootNode;
         bool started;
@@ -23,7 +23,10 @@ namespace UnityTutorialSystem.Tutorial
         public TutorialEventStreamManager()
         {
             buffer = new List<EventMessageState>();
+            model = new ListTreeModel<TutorialEventStateData>();
         }
+
+        public ITreeModel<TutorialEventStateData> Model => model;
 
         void DebugLog(string message)
         {
@@ -44,7 +47,7 @@ namespace UnityTutorialSystem.Tutorial
             PrintTree(data);
             rootNode = CreateTreeNodes(data, nodeMapper);
             DebugLog("Generated tree:\n" + rootNode.AsTextTree());
-            tutorialSteps.Model = new ListTreeModel<TutorialEventStateData>(rootNode);
+            model.Root = rootNode;
 
             foreach (var d in tutorialStateTrackers)
             {
@@ -109,7 +112,7 @@ namespace UnityTutorialSystem.Tutorial
                 }
             }
 
-            tutorialSteps.Model.FireStructureChanged();
+            model.FireStructureChanged();
         }
 
         List<ExpectedStates> CollectTreeData()
