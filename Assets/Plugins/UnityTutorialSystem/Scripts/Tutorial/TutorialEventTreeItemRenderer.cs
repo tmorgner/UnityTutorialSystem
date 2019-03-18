@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityTutorialSystem.Events;
 using UnityTutorialSystem.UI.Trees;
+using VRKitchenSimulator.UI;
 
 namespace UnityTutorialSystem.Tutorial
 {
@@ -83,9 +84,9 @@ namespace UnityTutorialSystem.Tutorial
 
         protected override void Awake()
         {
-            base.Awake();
             ignoreLeadingIndent = Math.Max(ignoreLeadingIndent, 0);
             layout = GetComponent<LayoutGroup>();
+            base.Awake();
         }
 
         string GetSuccessMessage(BasicEventStreamMessage msg)
