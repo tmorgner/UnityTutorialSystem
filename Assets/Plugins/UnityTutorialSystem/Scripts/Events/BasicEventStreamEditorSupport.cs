@@ -1,23 +1,25 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
-
-#endif
-
 namespace UnityTutorialSystem.Events
 {
+    /// <summary>
+    ///   Support code for creating event message sub-objects on BasicEventStream assets.
+    ///   This is an editor-only class containing helper methods used by the BasicEventStream
+    ///   editor callbacks.
+    /// </summary>
     public static class BasicEventStreamEditorSupport
     {
         /// <summary>
-        ///     Removes all nodes that are no longer part of the graph's set of defined event types.
+        ///     Removes all nodes that are no longer part of the stream's set of defined event types.
         ///     The list returned contains all retained nodes that continue to be valid.
         /// </summary>
-        /// <param name="graph"></param>
-        /// <param name="retainedNodes"></param>
+        /// <param name="eventStream">The event stream being processed</param>
+        /// <param name="retainedNodes">A buffer of retained message nodes keyed by their name</param>
         /// <returns></returns>
-        public static Dictionary<string, BasicEventStreamMessage> CleanGraph(BasicEventStream graph,
+        public static Dictionary<string, BasicEventStreamMessage> CleanGraph(BasicEventStream eventStream,
                                                                              Dictionary<string, BasicEventStreamMessage> retainedNodes = null)
         {
             if (retainedNodes == null)
@@ -25,14 +27,13 @@ namespace UnityTutorialSystem.Events
                 retainedNodes = new Dictionary<string, BasicEventStreamMessage>();
             }
 
-#if UNITY_EDITOR
-            if (graph == null)
+            if (eventStream == null)
             {
                 Debug.Log("Not a graph");
                 return retainedNodes;
             }
 
-            var assetPath = AssetDatabase.GetAssetPath(graph);
+            var assetPath = AssetDatabase.GetAssetPath(eventStream);
             foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(assetPath))
             {
                 if (asset == null)
@@ -40,7 +41,7 @@ namespace UnityTutorialSystem.Events
                     continue;
                 }
 
-                if (asset == graph)
+                if (asset == eventStream)
                 {
                     continue;
                 }
@@ -49,7 +50,7 @@ namespace UnityTutorialSystem.Events
                 var node = asset as BasicEventStreamMessage;
                 if (node != null)
                 {
-                    if (graph.IsValidMessage(node))
+                    if (eventStream.IsValidMessage(node))
                     {
                         Debug.Log("Retained asset " + asset + " of type " + asset.GetType());
                         retainedNodes.Add(node.name, node);
@@ -66,14 +67,18 @@ namespace UnityTutorialSystem.Events
                     Object.DestroyImmediate(asset, true);
                 }
             }
-#endif
+
             return retainedNodes;
         }
 
+        /// <summary>
+        ///   Adds the given list of generated nodes as sub-objects to the event stream asset.
+        /// </summary>
+        /// <param name="basicEventStream">The event stream</param>
+        /// <param name="generatedNodes">The nodes that should be added to the stream asset</param>
         public static void GenerateNodes(BasicEventStream basicEventStream,
                                          List<BasicEventStreamMessage> generatedNodes)
         {
-#if UNITY_EDITOR
             foreach (var n in generatedNodes)
             {
                 EditorUtility.SetDirty(n);
@@ -81,7 +86,7 @@ namespace UnityTutorialSystem.Events
             }
 
             EditorUtility.SetDirty(basicEventStream);
-#endif
         }
     }
 }
+#endif

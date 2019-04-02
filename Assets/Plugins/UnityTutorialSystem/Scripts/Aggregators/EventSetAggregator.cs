@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityTutorialSystem.Events;
@@ -7,17 +6,34 @@ using UnityTutorialSystem.Events;
 namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
-    ///     A aggregator that waits for all events to occur. The events can
-    ///     occur in any order. If strict mode is enabled, a non-matching
-    ///     event will fail this aggregator.
+    ///     <para>
+    ///         An aggregator that waits for all events to occur. The events can
+    ///         occur in any order. If strict mode is enabled, a non-matching
+    ///         event will fail this aggregator.
+    ///     </para>
+    ///     <para>
+    ///         Duplicate declared messages will be collated into a single expected message.
+    ///         To match multiple messages of the same type, use a <see cref="EventMessageCounter"/>
+    ///         as a child matcher. 
+    ///     </para>
     /// </summary>
     public class EventSetAggregator : EventMessageAggregator
     {
+        /// <summary>
+        ///   Defines how strict incoming messages are matched against the set of
+        ///   received messages. 
+        /// </summary>
         public enum MatchMode
         {
-            Lenient,
-            IgnoreDuplicates,
-            Strict
+            /// <summary>
+            ///   Requests an lenient matching mode. Duplicate messages will be ignored.
+            /// </summary>
+            Lenient = 0,
+            /// <summary>
+            ///   Requires strict matching. Any duplicate event received will fail the
+            ///   aggregator.
+            /// </summary>
+            Strict = 2
         }
 
         readonly Dictionary<BasicEventStreamMessage, bool> matchState;
@@ -33,6 +49,7 @@ namespace UnityTutorialSystem.Aggregators
             messages = new List<BasicEventStreamMessage>();
         }
 
+        /// <inheritdoc />
         protected override void RegisterValidMessage(BasicEventStreamMessage m)
         {
             if (matchState.ContainsKey(m))
@@ -44,6 +61,7 @@ namespace UnityTutorialSystem.Aggregators
             matchState[m] = false;
         }
 
+        /// <inheritdoc />
         public override void ResetMatch()
         {
             foreach (var k in matchState)
@@ -55,6 +73,7 @@ namespace UnityTutorialSystem.Aggregators
             matchCount = 0;
         }
 
+        /// <inheritdoc />
         protected override bool OnEventReceived(BasicEventStreamMessage messageReceived)
         {
             if (matchCount == matchState.Count)
@@ -93,21 +112,13 @@ namespace UnityTutorialSystem.Aggregators
             return true;
         }
 
+        /// <inheritdoc />
         public override List<EventMessageState> ListEvents(List<EventMessageState> buffer)
         {
-            if (buffer == null)
-            {
-                buffer = new List<EventMessageState>(messages.Count);
-            }
-            else
-            {
-                buffer.Clear();
-                buffer.Capacity = Math.Max(buffer.Capacity, messages.Count);
-            }
+            buffer = EnsureBufferValid(buffer, messages.Count);
 
-            for (var index = 0; index < messages.Count; index++)
+            foreach (var m in messages)
             {
-                var m = messages[index];
                 bool matchCompleted;
                 matchState.TryGetValue(m, out matchCompleted);
                 buffer.Add(new EventMessageState(m, matchCompleted, enabled && !matchCompleted));

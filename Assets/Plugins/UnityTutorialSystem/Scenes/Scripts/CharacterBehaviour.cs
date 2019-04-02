@@ -1,27 +1,55 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 using UnityEngine.Events;
 
-namespace TutorialSystem.Scenes.Scripts
+namespace UnityTutorialSystem.Scenes.Scripts
 {
+    /// <summary>
+    ///   A basic character controller that allows WASD movement and mouse look in a single script.
+    /// </summary>
     [RequireComponent(typeof(CharacterController))]
     public class CharacterBehaviour : MonoBehaviour
     {
+        [BoxGroup("Movement")]
+        [Tooltip("Modifier Key to enable strafing movement")]
         [SerializeField] KeyCode strafeKey;
+        
+        [BoxGroup("Movement")]
+        [Tooltip("Alternative modifier Key to enable strafing movement")]
         [SerializeField] KeyCode strafeKey2;
-        [SerializeField] float forwardMovementSpeed;
-        [SerializeField] float reverseMovementSpeed;
-        [SerializeField] float strafeSpeed;
-        [SerializeField] float movementThreshold;
-        [SerializeField] float rotationSpeed;
+        
+        [BoxGroup("Movement")]
         [SerializeField] bool independentHeadMovement;
-        [SerializeField] bool invertHeadLook;
-        [SerializeField] Transform head;
-        [SerializeField] bool mouseMovement;
-        CharacterController characterController;
-        public UnityEvent MovementBlocked;
-        public UnityEvent Moving;
 
-        public CollisionFlags MovementResult { get; set; }
+        [BoxGroup("Movement")]
+        [SerializeField] bool invertHeadLook;
+        [BoxGroup("Movement")]
+        [SerializeField] bool mouseMovement;
+
+        [BoxGroup("Movement Speed")]
+        [SerializeField] float forwardMovementSpeed;
+        [BoxGroup("Movement Speed")]
+        [SerializeField] float reverseMovementSpeed;
+        [BoxGroup("Movement Speed")]
+        [SerializeField] float strafeSpeed;
+        [BoxGroup("Movement Speed")]
+        [SerializeField] float rotationSpeed;
+        [BoxGroup("Movement Speed")]
+        [Tooltip("At which velocity does the animation system show an movement animation?")]
+        [SerializeField] float movementThreshold;
+        
+        [BoxGroup("Internal")]
+        [SerializeField] Transform head;
+        
+        CharacterController characterController;
+        [SerializeField] UnityEvent movementBlocked;
+        [SerializeField] UnityEvent moving;
+
+        public UnityEvent MovementBlocked => movementBlocked;
+
+        public UnityEvent Moving => moving;
+
+        public CollisionFlags MovementResult { get; private set; }
 
         void Reset()
         {
@@ -37,14 +65,6 @@ namespace TutorialSystem.Scenes.Scripts
         void Awake()
         {
             characterController = GetComponent<CharacterController>();
-        }
-
-        void OnEnable()
-        {
-        }
-
-        void OnDisable()
-        {
         }
 
         void FixedUpdate()
@@ -77,23 +97,23 @@ namespace TutorialSystem.Scenes.Scripts
 
             if (mouseMovement)
             {
-                HandleMouseLook();
+                head.localRotation = HandleMouseLook();
             }
 
             MovementResult = characterController.Move(velocity);
 
             if (MovementResult != 0)
             {
-                MovementBlocked?.Invoke();
+                movementBlocked?.Invoke();
             }
 
             if (characterController.velocity.magnitude > movementThreshold)
             {
-                Moving?.Invoke();
+                moving?.Invoke();
             }
         }
 
-        void HandleMouseLook()
+        Quaternion HandleMouseLook()
         {
             var mouseLookAxisX = independentHeadMovement ? Input.GetAxis("Mouse X") : 0;
             var mouseLookAxisY = Input.GetAxis("Mouse Y") * (invertHeadLook ? 1 : -1);
@@ -103,8 +123,8 @@ namespace TutorialSystem.Scenes.Scripts
             var eulers = head.localRotation.eulerAngles;
             eulers.y += angleY;
             eulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, eulers.x + angleX), -45, 45);
-
-            head.localRotation = Quaternion.Euler(eulers.x, eulers.y, 0);
+            eulers.z = 0;
+            return Quaternion.Euler(eulers);
         }
     }
 }

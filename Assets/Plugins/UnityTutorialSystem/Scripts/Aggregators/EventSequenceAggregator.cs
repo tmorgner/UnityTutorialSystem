@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,16 +12,38 @@ namespace UnityTutorialSystem.Aggregators
     ///     predefined sequence of events.  If the matching is strict, any incoming event
     ///     that does not match the expected event will mark the sequence as failed.
     ///     A non-strict matcher will simply ignore events that do not match and will
-    ///     patiently wait until it sees a next suitable event. Non-strict matchers will
+    ///     patiently wait until it sees a suitable next event. Therefore non-strict matchers will
     ///     never fire a match-failed event.
     /// </summary>
+    /// <remarks>
+    ///     Acceptable events are stored in the 'validMessages' list. 
+    ///     This class tracks each received message in a list of flags, one entry for each
+    ///     accepted message. The success message is fired when all events have been seen at
+    ///     least once. 
+    /// </remarks>
     public class EventSequenceAggregator : EventMessageAggregator
     {
+        /// <summary>
+        ///   Defines the validation mode for this aggregator. 
+        /// </summary>
         public enum ValidationMode
         {
-            Lenient,
-            AllowOutOfOrderEvents,
-            Strict
+            /// <summary>
+            ///   Requests lenient matching. A lenient matcher will ignore out of order events.
+            /// </summary>
+            [UsedImplicitly] Lenient = 0,
+            /// <summary>
+            ///   Requests that the matcher accepts events in a relaxed order. Events that form a
+            ///   series of events that all are marked as out-of-order executable will be treated
+            ///   as an event set instead of an event list. Out of order processing will not skip
+            ///   events that are not marked for out of order execution. 
+            /// </summary>
+            AllowOutOfOrderEvents = 1,
+            /// <summary>
+            ///   Requires strict matching. Any event not seen in the correct order will mark the
+            ///   aggregator as failed.
+            /// </summary>
+            Strict = 2
         }
 
         readonly List<BasicEventStreamMessage> validMessages;
@@ -37,12 +59,14 @@ namespace UnityTutorialSystem.Aggregators
             matchState = new List<bool>();
         }
 
+        /// <inheritdoc />
         protected override void RegisterValidMessage(BasicEventStreamMessage m)
         {
             validMessages.Add(m);
             matchState.Add(false);
         }
 
+        /// <inheritdoc />
         public override void ResetMatch()
         {
             nextEvent = 0;
@@ -54,17 +78,10 @@ namespace UnityTutorialSystem.Aggregators
             }
         }
 
+        /// <inheritdoc />
         public override List<EventMessageState> ListEvents(List<EventMessageState> buffer)
         {
-            if (buffer == null)
-            {
-                buffer = new List<EventMessageState>(validMessages.Count);
-            }
-            else
-            {
-                buffer.Clear();
-                buffer.Capacity = Math.Max(buffer.Capacity, Messages.Count);
-            }
+            buffer = EnsureBufferValid(buffer, Messages.Count);
 
             for (var index = 0; index < validMessages.Count; index++)
             {
@@ -75,6 +92,7 @@ namespace UnityTutorialSystem.Aggregators
             return buffer;
         }
 
+        /// <inheritdoc />
         protected override bool OnEventReceived(BasicEventStreamMessage messageReceived)
         {
             if (nextEvent >= validMessages.Count)
@@ -96,32 +114,33 @@ namespace UnityTutorialSystem.Aggregators
                 return true;
             }
 
-            if (mode == ValidationMode.AllowOutOfOrderEvents)
+            switch (mode)
             {
-                for (var idx = nextEvent + 1; idx < validMessages.Count; idx += 1)
+                case ValidationMode.AllowOutOfOrderEvents:
                 {
-                    var msg = validMessages[idx];
-                    if (!msg.AllowOutOfOrderExecution)
+                    for (var idx = nextEvent + 1; idx < validMessages.Count; idx += 1)
                     {
-                        break;
-                    }
+                        var msg = validMessages[idx];
+                        if (!msg.AllowOutOfOrderExecution)
+                        {
+                            break;
+                        }
 
-                    if (msg == messageReceived)
-                    {
-                        if (!matchState[idx])
+                        if (msg == messageReceived && !matchState[idx])
                         {
                             matchState[idx] = true;
                             return true;
                         }
                     }
-                }
-            }
 
-            if (mode == ValidationMode.Strict)
-            {
-                MatchResult = EventMessageMatcherState.Failure;
-                matchFailed?.Invoke();
-                return true;
+                    break;
+                }
+                case ValidationMode.Strict:
+                {
+                    MatchResult = EventMessageMatcherState.Failure;
+                    matchFailed?.Invoke();
+                    return true;
+                }
             }
 
             return false;

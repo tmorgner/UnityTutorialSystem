@@ -173,20 +173,6 @@ namespace UnityTutorialSystem.Tutorial
             }
         }
 
-        static TutorialEventMessage Convert(BasicEventStreamMessage msg)
-        {
-            var message = msg as TutorialEventMessage;
-            if (message != null)
-            {
-                return message;
-            }
-
-            Debug.LogError("Old message format encountered");
-            var m = ScriptableObject.CreateInstance<TutorialEventMessage>();
-            m.CopyFrom(msg);
-            return m;
-        }
-
         static TutorialEventStateData AddTree(ExpectedStates state,
                                               Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper)
         {

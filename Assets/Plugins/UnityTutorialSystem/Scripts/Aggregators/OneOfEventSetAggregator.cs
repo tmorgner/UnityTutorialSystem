@@ -5,7 +5,7 @@ using UnityTutorialSystem.Events;
 namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
-    ///     A reactor component that waits for any of the given messages and fires a
+    ///     An aggregator component that waits for any of the given messages and fires a
     ///     success message if at least one of the listed messages has been encountered.
     /// </summary>
     public class OneOfEventSetAggregator : EventMessageAggregator
@@ -20,6 +20,7 @@ namespace UnityTutorialSystem.Aggregators
             messages = new List<BasicEventStreamMessage>();
         }
 
+        /// <inheritdoc />
         protected override void RegisterValidMessage(BasicEventStreamMessage m)
         {
             if (matchState.Add(m))
@@ -28,12 +29,14 @@ namespace UnityTutorialSystem.Aggregators
             }
         }
 
+        /// <inheritdoc />
         public override void ResetMatch()
         {
             MatchResult = EventMessageMatcherState.Waiting;
             matchCount = 0;
         }
 
+        /// <inheritdoc />
         protected override bool OnEventReceived(BasicEventStreamMessage messageReceived)
         {
             if (matchCount > 0)
@@ -53,6 +56,7 @@ namespace UnityTutorialSystem.Aggregators
             return false;
         }
 
+        /// <inheritdoc />
         public override List<EventMessageState> ListEvents(List<EventMessageState> buffer)
         {
             if (buffer == null)

@@ -2,47 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityTutorialSystem.Events;
+using UnityTutorialSystem.Helpers;
 
 namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
-    ///     A simple example of an aggregator function. This behaviour listens for
-    ///     incoming events that match the given message.
+    ///     A simple example of a message aggregator. This class counts the incoming events that match the given message.
     /// </summary>
     public class EventMessageCounter : EventMessageAggregator
     {
-        readonly HashSet<BasicEventStreamMessage> messagePool;
+        readonly HashSet<UnityObjectWrapper<BasicEventStreamMessage>> messagePool;
         [SerializeField] int targetCount;
 
         public EventMessageCounter()
         {
-            messagePool = new HashSet<BasicEventStreamMessage>();
+            messagePool = new HashSet<UnityObjectWrapper<BasicEventStreamMessage>>();
         }
 
-        public int Count { get; set; }
+        public int Count { get; private set; }
 
+        /// <inheritdoc />
         protected override void RegisterValidMessage(BasicEventStreamMessage m)
         {
-            messagePool.Add(m);
+            messagePool.Add(new UnityObjectWrapper<BasicEventStreamMessage>(m));
         }
 
+        /// <inheritdoc />
         public override void ResetMatch()
         {
             MatchResult = EventMessageMatcherState.Waiting;
             Count = 0;
         }
 
+        /// <inheritdoc />
         public override List<EventMessageState> ListEvents(List<EventMessageState> buffer)
         {
-            if (buffer == null)
-            {
-                buffer = new List<EventMessageState>(Messages.Count);
-            }
-            else
-            {
-                buffer.Clear();
-                buffer.Capacity = Math.Max(buffer.Capacity, Messages.Count);
-            }
+            buffer = EnsureBufferValid(buffer, Messages.Count);
 
             var completed = MatchResult == EventMessageMatcherState.Success;
             var expected = MatchResult == EventMessageMatcherState.Waiting;
@@ -56,19 +51,20 @@ namespace UnityTutorialSystem.Aggregators
 
         protected override bool OnEventReceived(BasicEventStreamMessage received)
         {
-            if (messagePool.Contains(received))
+            if (!messagePool.Contains(new UnityObjectWrapper<BasicEventStreamMessage>(received)))
             {
-                Count += 1;
-                if (targetCount == Count)
-                {
-                    MatchResult = EventMessageMatcherState.Success;
-                    MatchComplete?.Invoke();
-                }
-
-                return true;
+                return false;
             }
 
-            return false;
+            Count += 1;
+            if (targetCount == Count)
+            {
+                MatchResult = EventMessageMatcherState.Success;
+                MatchComplete?.Invoke();
+            }
+
+            return true;
+
         }
     }
 }
