@@ -3,12 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityTutorialSystem.Events;
+using UnityTutorialSystem.UI;
 using UnityTutorialSystem.UI.Trees;
 using VRKitchenSimulator.UI;
 
 namespace UnityTutorialSystem.Tutorial
 {
-    public class TutorialEventTreeItemRenderer : TreeItemRenderer<TutorialEventStateData>
+    public class TutorialEventTreeItemRenderer : TreeItemRenderer<EventStreamTreeModelData>
     {
         [SerializeField] Color whenNextEventColor;
         [SerializeField] Color whenCompletedColor;
@@ -36,7 +37,7 @@ namespace UnityTutorialSystem.Tutorial
             label = GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        bool IsNextEvent(TutorialEventStateData data)
+        bool IsNextEvent(EventStreamTreeModelData data)
         {
             if (data.ExpectedNext == false)
             {
@@ -113,7 +114,7 @@ namespace UnityTutorialSystem.Tutorial
             }
         }
 
-        protected override void OnUpdateValue(TreePath<TutorialEventStateData> treePath)
+        protected override void OnUpdateValue(TreePath<EventStreamTreeModelData> treePath)
         {
             if (treePath == null)
             {
@@ -122,7 +123,7 @@ namespace UnityTutorialSystem.Tutorial
                 return;
             }
 
-            TutorialEventStateData data;
+            EventStreamTreeModelData data;
             if (treePath.TryGetLastComponent(out data) && (data.SourceMessage != null))
             {
                 if (label != null)
@@ -169,7 +170,7 @@ namespace UnityTutorialSystem.Tutorial
             {
                 if (!anchorStored)
                 {
-                    var tree = gameObject.GetComponentInParent<TreeView<TutorialEventStateData>>();
+                    var tree = gameObject.GetComponentInParent<TreeView<EventStreamTreeModelData>>();
                     if (tree != null)
                     {
                         indentCorrection = tree.ShowRootNode ? 0 : -1;

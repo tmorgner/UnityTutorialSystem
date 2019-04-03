@@ -6,27 +6,27 @@ using UnityTutorialSystem.Aggregators;
 using UnityTutorialSystem.Events;
 using UnityTutorialSystem.UI.Trees;
 
-namespace UnityTutorialSystem.Tutorial
+namespace UnityTutorialSystem.UI
 {
-    public class TutorialEventStreamManager : MonoBehaviour
+    public class EventStreamTreeModelBuilder : MonoBehaviour
     {
         readonly List<EventMessageState> buffer;
+        readonly ListTreeModel<EventStreamTreeModelData> model;
 
         [SerializeField] [ReorderableList] List<EventMessageAggregatorStatePublisher> tutorialStateTrackers;
         [SerializeField] bool debug;
 
-        ListTreeModel<TutorialEventStateData> model;
-        Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper;
-        TutorialEventStateData rootNode;
+        Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData> nodeMapper;
+        EventStreamTreeModelData rootNode;
         bool started;
 
-        public TutorialEventStreamManager()
+        public EventStreamTreeModelBuilder()
         {
             buffer = new List<EventMessageState>();
-            model = new ListTreeModel<TutorialEventStateData>();
+            model = new ListTreeModel<EventStreamTreeModelData>();
         }
 
-        public ITreeModel<TutorialEventStateData> Model => model;
+        public ITreeModel<EventStreamTreeModelData> Model => model;
 
         void DebugLog(string message)
         {
@@ -40,7 +40,7 @@ namespace UnityTutorialSystem.Tutorial
 
         void Start()
         {
-            nodeMapper = new Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData>();
+            nodeMapper = new Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>();
             started = true;
 
             var data = CollectTreeData();
@@ -78,7 +78,7 @@ namespace UnityTutorialSystem.Tutorial
                 return;
             }
 
-            TutorialEventStateData data;
+            EventStreamTreeModelData data;
             if (!nodeMapper.TryGetValue(source, out data))
             {
                 data = rootNode;
@@ -143,11 +143,11 @@ namespace UnityTutorialSystem.Tutorial
             return data.Where(d => !d.IsDependency).ToList();
         }
 
-        TutorialEventStateData CreateTreeNodes(List<ExpectedStates> data,
-                                               Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper)
+        EventStreamTreeModelData CreateTreeNodes(List<ExpectedStates> data,
+                                               Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData> nodeMapper)
         {
             var roots = data.Where(s => !s.IsDependency).ToList();
-            var childStates = new List<TutorialEventStateData>();
+            var childStates = new List<EventStreamTreeModelData>();
             foreach (var s in roots)
             {
                 var item = AddTree(s, nodeMapper);
@@ -155,10 +155,10 @@ namespace UnityTutorialSystem.Tutorial
                 AddGeneratedChildItems(childStates, item);
             }
 
-            return new TutorialEventStateData(null, false, true, childStates);
+            return new EventStreamTreeModelData(null, false, true, childStates);
         }
 
-        static void AddGeneratedChildItems(List<TutorialEventStateData> childStates, TutorialEventStateData item)
+        static void AddGeneratedChildItems(List<EventStreamTreeModelData> childStates, EventStreamTreeModelData item)
         {
             if (item.SourceMessage != null)
             {
@@ -173,10 +173,10 @@ namespace UnityTutorialSystem.Tutorial
             }
         }
 
-        static TutorialEventStateData AddTree(ExpectedStates state,
-                                              Dictionary<EventMessageAggregatorStatePublisher, TutorialEventStateData> nodeMapper)
+        static EventStreamTreeModelData AddTree(ExpectedStates state,
+                                              Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData> nodeMapper)
         {
-            var childStates = new List<TutorialEventStateData>();
+            var childStates = new List<EventStreamTreeModelData>();
             foreach (var s in state.RequiredMessages)
             {
                 ExpectedStates dependency;
@@ -189,11 +189,11 @@ namespace UnityTutorialSystem.Tutorial
                 else
                 {
                     var message = (s.Message);
-                    childStates.Add(new TutorialEventStateData(message, s.Completed, s.ExpectedNext));
+                    childStates.Add(new EventStreamTreeModelData(message, s.Completed, s.ExpectedNext));
                 }
             }
 
-            var stateData = new TutorialEventStateData(state.SuccessMessage, state.Completed, false, childStates);
+            var stateData = new EventStreamTreeModelData(state.SuccessMessage, state.Completed, false, childStates);
             nodeMapper[state.MessageSource] = stateData;
             return stateData;
         }

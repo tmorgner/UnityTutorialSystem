@@ -1,28 +1,17 @@
 ﻿using UnityEngine;
+using UnityTutorialSystem.UI;
 using UnityTutorialSystem.UI.Trees;
 
 namespace UnityTutorialSystem.Tutorial
-{
-    public class TutorialEventTreeView : TreeView<TutorialEventStateData>
+{     
+    public class TutorialEventTreeView : TreeView<EventStreamTreeModelData>
     {
         [SerializeField] TutorialEventTreeItemRenderer template;
         [SerializeField] bool showAllNodes;
         [SerializeField] bool hideCompletedSubTrees;
-        ITreeModel<TutorialEventStateData> model;
+        protected override TreeItemRenderer<EventStreamTreeModelData> ItemRenderer => template;
 
-        protected override TreeItemRenderer<TutorialEventStateData> ItemRenderer => template;
-
-        public ITreeModel<TutorialEventStateData> Model
-        {
-            get { return model; }
-            set
-            {
-                model = value;
-                InternalModel = value;
-            }
-        }
-
-        protected override bool IsPathVisible(TreePath<TutorialEventStateData> path)
+        protected override bool IsPathVisible(TreePath<EventStreamTreeModelData> path)
         {
             if (hideCompletedSubTrees)
             {
@@ -38,8 +27,7 @@ namespace UnityTutorialSystem.Tutorial
 
             if (!showAllNodes)
             {
-                TutorialEventStateData stateData;
-                if (path.TryGetLastComponent(out stateData) && (stateData != null))
+                if (path.TryGetLastComponent(out var stateData) && (stateData != null))
                 {
                     // Debug.Log("Maybe Hiding node " + path);
                     return stateData.Completed || stateData.ExpectedNext;

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityTutorialSystem.UI;
 
 namespace UnityTutorialSystem.Tutorial
 {
     public class TutorialEventTreeBinding : MonoBehaviour
     {
-        [SerializeField] TutorialEventStreamManager modelSource;
+        [SerializeField] EventStreamTreeModelBuilder modelSource;
         [SerializeField] TutorialEventTreeView treeView;
 
         void Awake()

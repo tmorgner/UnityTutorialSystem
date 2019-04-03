@@ -29,11 +29,19 @@ namespace UnityTutorialSystem.Events
             protected set => stream = value;
         }
 
+        /// <summary>
+        ///   A simple non-public entry point so that BasicEventStreams can
+        ///   pass itself to instances of this class at design time.
+        /// </summary>
+        /// <param name="eventStream"></param>
         internal void SetUpStream(BasicEventStream eventStream)
         {
             stream = eventStream;
         }
 
+        /// <summary>
+        ///   Publishes the message to the associated stream.
+        /// </summary>
         public void Publish()
         {
             if (stream != null)

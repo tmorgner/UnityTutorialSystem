@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace UnityTutorialSystem.Events
 {
+    /// <summary>
+    ///   A debug component that prints out all messages received by the given event stream.
+    /// </summary>
     public class LogEventStream : MonoBehaviour
     {
         [SerializeField] BasicEventStream stream;

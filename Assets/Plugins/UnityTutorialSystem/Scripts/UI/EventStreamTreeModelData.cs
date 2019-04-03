@@ -5,29 +5,29 @@ using System.Linq;
 using System.Text;
 using UnityTutorialSystem.Events;
 
-namespace UnityTutorialSystem.Tutorial
+namespace UnityTutorialSystem.UI
 {
-    public class TutorialEventStateData : IReadOnlyList<TutorialEventStateData>,
-                                          IEquatable<TutorialEventStateData>
+    public class EventStreamTreeModelData : IReadOnlyList<EventStreamTreeModelData>,
+                                          IEquatable<EventStreamTreeModelData>
     {
-        readonly List<TutorialEventStateData> subTasks;
+        readonly List<EventStreamTreeModelData> subTasks;
 
-        public TutorialEventStateData(BasicEventStreamMessage sourceMessage,
+        public EventStreamTreeModelData(BasicEventStreamMessage sourceMessage,
                                       bool completed,
                                       bool expectedNext,
-                                      IReadOnlyList<TutorialEventStateData> data)
+                                      IReadOnlyList<EventStreamTreeModelData> data)
         {
             SourceMessage = sourceMessage;
             Completed = completed;
             ExpectedNext = expectedNext;
-            subTasks = new List<TutorialEventStateData>(data);
+            subTasks = new List<EventStreamTreeModelData>(data);
         }
 
-        public TutorialEventStateData(BasicEventStreamMessage sourceMessage,
+        public EventStreamTreeModelData(BasicEventStreamMessage sourceMessage,
                                       bool completed,
                                       bool expectedNext,
-                                      params TutorialEventStateData[] data) :
-            this(sourceMessage, completed, expectedNext, (IReadOnlyList<TutorialEventStateData>)data)
+                                      params EventStreamTreeModelData[] data) :
+            this(sourceMessage, completed, expectedNext, (IReadOnlyList<EventStreamTreeModelData>)data)
         {
         }
 
@@ -36,7 +36,7 @@ namespace UnityTutorialSystem.Tutorial
         public bool Completed { get; set; }
         public bool ExpectedNext { get; set; }
 
-        public bool Equals(TutorialEventStateData other)
+        public bool Equals(EventStreamTreeModelData other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -61,10 +61,10 @@ namespace UnityTutorialSystem.Tutorial
             return subTasks.SequenceEqual(other.subTasks);
         }
 
-        public TutorialEventStateData this[int idx] => subTasks[idx];
+        public EventStreamTreeModelData this[int idx] => subTasks[idx];
         public int Count => subTasks.Count;
 
-        IEnumerator<TutorialEventStateData> IEnumerable<TutorialEventStateData>.GetEnumerator()
+        IEnumerator<EventStreamTreeModelData> IEnumerable<EventStreamTreeModelData>.GetEnumerator()
         {
             return GetEnumerator();
         }
@@ -74,7 +74,7 @@ namespace UnityTutorialSystem.Tutorial
             return GetEnumerator();
         }
 
-        public List<TutorialEventStateData>.Enumerator GetEnumerator()
+        public List<EventStreamTreeModelData>.Enumerator GetEnumerator()
         {
             return subTasks.GetEnumerator();
         }
@@ -96,7 +96,7 @@ namespace UnityTutorialSystem.Tutorial
                 return false;
             }
 
-            return Equals((TutorialEventStateData)obj);
+            return Equals((EventStreamTreeModelData)obj);
         }
 
         public override int GetHashCode()
@@ -125,12 +125,12 @@ namespace UnityTutorialSystem.Tutorial
             return $"({nameof(SourceMessage)}: {SourceMessage.name}, {nameof(Completed)}: {Completed})";
         }
 
-        public static bool operator ==(TutorialEventStateData left, TutorialEventStateData right)
+        public static bool operator ==(EventStreamTreeModelData left, EventStreamTreeModelData right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TutorialEventStateData left, TutorialEventStateData right)
+        public static bool operator !=(EventStreamTreeModelData left, EventStreamTreeModelData right)
         {
             return !Equals(left, right);
         }
@@ -142,7 +142,7 @@ namespace UnityTutorialSystem.Tutorial
             return b.ToString();
         }
 
-        static void AsTreeText(StringBuilder b, TutorialEventStateData data, int indent)
+        static void AsTreeText(StringBuilder b, EventStreamTreeModelData data, int indent)
         {
             b.Append("".PadLeft(indent * 4));
             b.Append(data);

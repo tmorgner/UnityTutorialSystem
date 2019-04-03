@@ -28,7 +28,7 @@ namespace UnityTutorialSystem.UI.Trees
             }
         }
 
-        protected ITreeModel<T> InternalModel
+        public ITreeModel<T> Model
         {
             get { return model; }
             set
@@ -143,6 +143,8 @@ namespace UnityTutorialSystem.UI.Trees
 
             return nextNodeIndexInPool;
         }
+
+
 
         protected virtual bool IsPathVisible(TreePath<T> path)
         {
