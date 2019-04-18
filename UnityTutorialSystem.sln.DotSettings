@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeStyle/AgentSmith/Comment/DictionaryName/@EntryValue">en-US,en-GB</s:String>
+	<s:String x:Key="/Default/CodeStyle/AgentSmith/CustomDictionary/CustomDictionaries/=en_002DGB/@EntryIndexedValue">&lt;data Name="en-GB" CaseSensitive="True" Encoded="True" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/AgentSmith/Identifier/DictionaryName/@EntryValue">en-US,en-GB</s:String>
+	<s:String x:Key="/Default/CodeStyle/AgentSmith/ResX/DictionaryName/@EntryValue">en-US,en-GB</s:String>
+	<s:String x:Key="/Default/CodeStyle/AgentSmith/String/DictionaryName/@EntryValue">en-US,en-GB</s:String>
+	<s:String x:Key="/Default/CodeStyle/AgentSmith/XmlDocumentation/DictionaryName/@EntryValue">en-US,en-GB</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=aggregators/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=modelled/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

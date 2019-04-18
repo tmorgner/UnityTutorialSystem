@@ -1,8 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityTutorialSystem.Aggregators;
 
 namespace UnityTutorialSystem.Events
 {
+    /// <summary>
+    /// <para>
+    ///   A general purpose next-event selector. Use this to fire events when the event produced
+    ///   by the given <see cref="nextMessageSource"/> StreamEventSource is one of the next
+    ///   expected messages of the collaborating <see cref="EventMessageAggregator"/>s.
+    /// </para>
+    /// <para>
+    ///   One usual use for this class is to activate and deactivate visual indicators that guide
+    ///   the player to the location of the next task that should be done. 
+    /// </para>
+    /// </summary>
     public class NextEventSelector : NextEventSelectorBase
     {
         [SerializeField] StreamEventSource nextMessageSource;
@@ -11,9 +23,9 @@ namespace UnityTutorialSystem.Events
         [SerializeField] UnityEvent disableForNextMessage;
 
 
-        public override StreamEventSource NextMessageSource => nextMessageSource;
+        protected override StreamEventSource NextMessageSource => nextMessageSource;
 
-        public override bool AutoPopulate => autoPopulate;
+        protected override bool AutoPopulate => autoPopulate;
 
         public UnityEvent EnableForNextMessage => enableForNextMessage;
 

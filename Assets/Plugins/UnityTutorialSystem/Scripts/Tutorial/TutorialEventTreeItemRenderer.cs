@@ -5,10 +5,26 @@ using UnityEngine.UI;
 using UnityTutorialSystem.Events;
 using UnityTutorialSystem.UI;
 using UnityTutorialSystem.UI.Trees;
-using VRKitchenSimulator.UI;
 
 namespace UnityTutorialSystem.Tutorial
 {
+    /// <summary>
+    ///  <para>
+    ///   A TreeItemRenderer for TutorialEventMessage instances. This behaviour must
+    ///   be added on the root object of the tree-item prefab or template object.
+    ///   This class receives a TutorialEventMessage from the TreeView and configures
+    ///   the assigned TextMeshProUGUI instance based on the formatting parameters
+    ///   set in the inspector.
+    ///  </para>
+    ///  <para>
+    ///   This class is lenient in which BasicEventStream messages it consumes
+    ///   (basically to work around Unity's built-in limitations centred around generics
+    ///   and instantiating generic serialized objects in a scene). If the
+    ///   message given is a TutorialEventMessage, this renderer will use the extended
+    ///   texts provided by the message, otherwise it will fall back to use the message
+    ///   object's name as text.
+    ///  </para>
+    /// </summary>
     public class TutorialEventTreeItemRenderer : TreeItemRenderer<EventStreamTreeModelData>
     {
         [SerializeField] Color whenNextEventColor;

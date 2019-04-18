@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace VRKitchenSimulator.UI
+namespace UnityTutorialSystem.UI
 {
     /// <summary>
     ///     Unity's built in layout components behave rather erratically when asked to deal with
     ///     flexible layouts. Instead of trying to fix what is not fixable, lets quickly implement
     ///     a simple and working layout manager.
     /// </summary>
+    /// <seealso href="https://www.tmorgner.com/development/2019/01/11/UnityUI-LayoutContainer.html"/>
     public class SaneHBoxLayout : LayoutGroup
     {
         const int AXIS_HORIZONTAL = 0;
         const int AXIS_VERTICAL = 1;
 
+        /// <inheritdoc />
         public override void CalculateLayoutInputHorizontal()
         {
             // Mandatory..
@@ -30,6 +32,7 @@ namespace VRKitchenSimulator.UI
             SetLayoutInputForAxis(minSize, prefSize, flexSize, AXIS_HORIZONTAL);
         }
 
+        /// <inheritdoc />
         public override void CalculateLayoutInputVertical()
         {
             var paddingVertical = (float) padding.vertical;
@@ -46,6 +49,7 @@ namespace VRKitchenSimulator.UI
             SetLayoutInputForAxis(minSize + paddingVertical, prefSize + paddingVertical, flexSize + paddingVertical, AXIS_VERTICAL);
         }
 
+        /// <inheritdoc />
         public override void SetLayoutHorizontal()
         {
             var prefSize = 0f;
@@ -62,6 +66,7 @@ namespace VRKitchenSimulator.UI
             }
         }
 
+        /// <inheritdoc />
         public override void SetLayoutVertical()
         {
             foreach (var c in rectChildren)

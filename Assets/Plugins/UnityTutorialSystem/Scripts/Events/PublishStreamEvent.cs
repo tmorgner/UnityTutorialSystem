@@ -20,11 +20,18 @@ namespace UnityTutorialSystem.Events
     {
         [SerializeField] BasicEventStreamMessage message;
 
+        /// <inheritdoc />
         public override bool WillGenerateMessage(BasicEventStreamMessage msg)
         {
             return Equals(message, msg);
         }
 
+        /// <summary>
+        ///   Fires the associated message to it's stream. This method is indented to be
+        ///   called as part of some form of event handling in your target objects.
+        ///   Trigger it when the success conditions for the task represented by the
+        ///   given message is met.
+        /// </summary>
         [UsedImplicitly]
         public void TriggerEvent()
         {

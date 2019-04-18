@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -92,26 +91,6 @@ namespace UnityTutorialSystem.Helpers
             }
 
             return results;
-        }
-
-
-        public static string Path(this GameObject go)
-        {
-            var b = new StringBuilder();
-            BuildPath(go, b);
-            return b.ToString();
-        }
-
-        static void BuildPath(GameObject go, StringBuilder b)
-        {
-            if (go.transform.parent != null)
-            {
-                var pgo = go.transform.parent.gameObject;
-                BuildPath(pgo, b);
-                b.Append("/");
-            }
-
-            b.Append(go.name);
         }
     }
 }

@@ -1,15 +1,26 @@
-﻿using UnityTutorialSystem.Aggregators;
+﻿using UnityEngine;
+using UnityTutorialSystem.Aggregators;
 
 namespace UnityTutorialSystem.Events
 {
+    /// <summary>
+    ///   An low-maintenance event aggregation activator for activating dependent
+    ///   EventMessageAggregator instances. Add this to a child-level aggregator
+    ///   that is paired with a <see cref="StreamEventSource"/>, usually a
+    ///   <see cref="EventMessageAggregatorStatePublisher"/>. This will selectively enable the
+    ///    aggregator while the parent stream expects the aggregator's result event message
+    ///    as one of its next messages. 
+    /// </summary>
+    [RequireComponent(typeof(StreamEventSource))]
+    [RequireComponent(typeof(EventMessageAggregator))]
     public class NextEventAggregationActivator : NextEventSelectorBase
     {
         EventMessageAggregator target;
         StreamEventSource nextMessageSource;
 
-        public override bool AutoPopulate => true;
+        protected override bool AutoPopulate => true;
 
-        public override StreamEventSource NextMessageSource => nextMessageSource;
+        protected override StreamEventSource NextMessageSource => nextMessageSource;
 
         void Awake()
         {
