@@ -612,8 +612,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1871891756}
   m_HandleRect: {fileID: 1871891755}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 364011010}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2887,7 +2887,7 @@ PrefabInstance:
     - target: {fileID: 224528275417451060, guid: 154207b2fe8edf6469479d563d3e8e59,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224528275417451060, guid: 154207b2fe8edf6469479d563d3e8e59,
         type: 3}

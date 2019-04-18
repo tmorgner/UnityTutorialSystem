@@ -83,7 +83,7 @@ namespace UnityTutorialSystem.UI.Trees
             }
 
             tmpArray[Count] = component;
-            return new TreePath<TNode>(backend, Count);
+            return new TreePath<TNode>(tmpArray, Count + 1);
         }
 
         /// <summary>

@@ -18,14 +18,7 @@ namespace NaughtyAttributes.Editor
             public PropertyKey(SerializedProperty property)
             {
                 fieldName = property.name;
-                if (property.propertyType == SerializedPropertyType.ObjectReference)
-                {
-                    instanceId = property.objectReferenceInstanceIDValue;
-                }
-                else
-                {
-                    instanceId = property.serializedObject?.GetHashCode() ?? 0;
-                }
+                instanceId = property.objectReferenceInstanceIDValue;
                 sourceObject = property.serializedObject;
             }
 
@@ -41,7 +34,7 @@ namespace NaughtyAttributes.Editor
                     return false;
                 }
 
-                return obj is PropertyKey && Equals((PropertyKey)obj);
+                return obj is PropertyKey && Equals((PropertyKey) obj);
             }
 
             public override int GetHashCode()

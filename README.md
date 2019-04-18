@@ -17,6 +17,8 @@ Larger sequences of events can be broken down into smaller tasks. You can
 flexibly combine multiple task-flows into larger work-flows, including 
 optional or alternative tasks.
 
+![Demo](unity-tutorial-system-demo.gif)
+
 ## Usage and Setup
 
 ### Step 1: Define the events the system tracks.

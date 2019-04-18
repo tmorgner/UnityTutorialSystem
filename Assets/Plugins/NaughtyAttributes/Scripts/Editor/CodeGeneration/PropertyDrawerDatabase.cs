@@ -7,22 +7,22 @@ namespace NaughtyAttributes.Editor
 {
     public static class PropertyDrawerDatabase
     {
-        private static Dictionary<Type, PropertyDrawer> drawersByAttributeType;
+        private static readonly Dictionary<Type, PropertyDrawer> drawersByAttributeType;
 
         static PropertyDrawerDatabase()
         {
             drawersByAttributeType = new Dictionary<Type, PropertyDrawer>();
             drawersByAttributeType[typeof(DisableIfAttribute)] = new DisableIfPropertyDrawer();
-drawersByAttributeType[typeof(DropdownAttribute)] = new DropdownPropertyDrawer();
-drawersByAttributeType[typeof(EnableIfAttribute)] = new EnableIfPropertyDrawer();
-drawersByAttributeType[typeof(MinMaxSliderAttribute)] = new MinMaxSliderPropertyDrawer();
-drawersByAttributeType[typeof(ProgressBarAttribute)] = new ProgressBarPropertyDrawer();
-drawersByAttributeType[typeof(ReadOnlyAttribute)] = new ReadOnlyPropertyDrawer();
-drawersByAttributeType[typeof(ReorderableListAttribute)] = new ReorderableListPropertyDrawer();
-drawersByAttributeType[typeof(ResizableTextAreaAttribute)] = new ResizableTextAreaPropertyDrawer();
-drawersByAttributeType[typeof(ShowAssetPreviewAttribute)] = new ShowAssetPreviewPropertyDrawer();
-drawersByAttributeType[typeof(SliderAttribute)] = new SliderPropertyDrawer();
-
+            drawersByAttributeType[typeof(DropdownAttribute)] = new DropdownPropertyDrawer();
+            drawersByAttributeType[typeof(EnableIfAttribute)] = new EnableIfPropertyDrawer();
+            drawersByAttributeType[typeof(MinMaxSliderAttribute)] = new MinMaxSliderPropertyDrawer();
+            drawersByAttributeType[typeof(ProgressBarAttribute)] = new ProgressBarPropertyDrawer();
+            drawersByAttributeType[typeof(ReadOnlyAttribute)] = new ReadOnlyPropertyDrawer();
+            drawersByAttributeType[typeof(ReorderableListAttribute)] = new ReorderableListPropertyDrawer();
+            drawersByAttributeType[typeof(ResizableTextAreaAttribute)] = new ResizableTextAreaPropertyDrawer();
+            drawersByAttributeType[typeof(ShowAssetPreviewAttribute)] = new ShowAssetPreviewPropertyDrawer();
+            drawersByAttributeType[typeof(SliderAttribute)] = new SliderPropertyDrawer();
+            drawersByAttributeType[typeof(EnumFlagAttribute)] = new EnumFlagPropertyDrawer();
         }
 
         public static PropertyDrawer GetDrawerForAttribute(Type attributeType)
@@ -47,4 +47,3 @@ drawersByAttributeType[typeof(SliderAttribute)] = new SliderPropertyDrawer();
         }
     }
 }
-

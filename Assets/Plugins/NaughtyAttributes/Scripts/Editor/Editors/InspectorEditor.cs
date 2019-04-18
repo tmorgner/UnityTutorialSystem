@@ -88,6 +88,11 @@ namespace NaughtyAttributes.Editor
             PropertyDrawerDatabase.ClearCache();
         }
 
+        public override bool RequiresConstantRepaint()
+        {
+            return useDefaultInspector == false;
+        }
+
         public override void OnInspectorGUI()
         {
             if (this.useDefaultInspector)
@@ -230,7 +235,7 @@ namespace NaughtyAttributes.Editor
             PropertyDrawer drawer = this.GetPropertyDrawerForField(field);
             if (drawer != null)
             {
-                drawer.DrawProperty(this.serializedPropertiesByFieldName[field.Name]);
+                drawer.DrawProperty(field, this.serializedPropertiesByFieldName[field.Name]);
             }
             else
             {
