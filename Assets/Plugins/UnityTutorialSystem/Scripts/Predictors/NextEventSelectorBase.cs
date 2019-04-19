@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityTutorialSystem.Aggregators;
+using UnityTutorialSystem.Events;
 using UnityTutorialSystem.Helpers;
 
-namespace UnityTutorialSystem.Events
+namespace UnityTutorialSystem.Predictors
 {
     /// <summary>
     /// <para>

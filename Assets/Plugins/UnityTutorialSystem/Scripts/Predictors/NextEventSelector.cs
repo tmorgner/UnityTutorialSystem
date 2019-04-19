@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityTutorialSystem.Aggregators;
+using UnityTutorialSystem.Events;
 
-namespace UnityTutorialSystem.Events
+namespace UnityTutorialSystem.Predictors
 {
     /// <summary>
     /// <para>

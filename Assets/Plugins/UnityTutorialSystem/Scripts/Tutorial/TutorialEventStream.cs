@@ -10,11 +10,13 @@ namespace UnityTutorialSystem.Tutorial
     [CreateAssetMenu(menuName = "Event Stream/Tutorial Event Stream")]
     public class TutorialEventStream : BasicEventStream
     {
+#if UNITY_EDITOR
+        /// <inheritdoc />
         protected override BasicEventStreamMessage CreateNode()
         {
             return CreateInstance<TutorialEventMessage>();
         }
-
+#endif
         /// <summary>
         ///   Validates that the message given is valid for this stream.
         ///   A message is valid if it is both an TutorialEventMessage

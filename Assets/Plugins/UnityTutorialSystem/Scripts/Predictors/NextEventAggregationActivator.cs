@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityTutorialSystem.Aggregators;
+using UnityTutorialSystem.Events;
 
-namespace UnityTutorialSystem.Events
+namespace UnityTutorialSystem.Predictors
 {
     /// <summary>
     ///   An low-maintenance event aggregation activator for activating dependent

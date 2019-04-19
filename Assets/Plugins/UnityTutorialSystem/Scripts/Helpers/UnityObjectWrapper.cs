@@ -12,9 +12,9 @@ namespace UnityTutorialSystem.Helpers
     /// <typeparam name="T"></typeparam>
     public struct UnityObjectWrapper<T> where T: UnityEngine.Object
     {
-        [NotNull] public readonly UnityEngine.Object Value;
+        [NotNull] public readonly T Value;
 
-        public UnityObjectWrapper(UnityEngine.Object value)
+        public UnityObjectWrapper(T value)
         {
             // ReSharper disable once JoinNullCheckWithUsage
             if (ReferenceEquals(value, null))
@@ -59,7 +59,7 @@ namespace UnityTutorialSystem.Helpers
         /// </summary>
         /// <param name="w">An object wrapper containing a non-null Unity object</param>
         /// <returns>the unwrapped object</returns>
-        public static implicit operator UnityEngine.Object (UnityObjectWrapper<T> w)
+        public static implicit operator T (UnityObjectWrapper<T> w)
         {
             return w.Value;
         }  

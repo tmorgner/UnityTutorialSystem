@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityTutorialSystem.Aggregators;
+using UnityTutorialSystem.Events;
 using UnityTutorialSystem.UI;
 
-namespace UnityTutorialSystem.Events
+namespace UnityTutorialSystem.Aggregators
 {
     /// <summary>
     ///    <para>A companion <see cref="MonoBehaviour"/> for <see cref="EventMessageAggregator"/> instances that monitors the
