@@ -35,7 +35,7 @@ namespace UnityTutorialSystem.Aggregators
         }
 
         /// <inheritdoc />
-        public override List<EventMessageState> ListEvents(List<EventMessageState> buffer)
+        public override List<EventMessageState> ListEvents(List<EventMessageState> buffer = null)
         {
             buffer = EnsureBufferValid(buffer, Messages.Count);
 
@@ -49,6 +49,7 @@ namespace UnityTutorialSystem.Aggregators
             return buffer;
         }
 
+        /// <inheritdoc />
         protected override bool OnEventReceived(BasicEventStreamMessage received)
         {
             if (!messagePool.Contains(new UnityObjectWrapper<BasicEventStreamMessage>(received)))

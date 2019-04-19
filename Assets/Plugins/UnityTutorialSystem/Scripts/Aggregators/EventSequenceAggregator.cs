@@ -79,7 +79,7 @@ namespace UnityTutorialSystem.Aggregators
         }
 
         /// <inheritdoc />
-        public override List<EventMessageState> ListEvents(List<EventMessageState> buffer)
+        public override List<EventMessageState> ListEvents(List<EventMessageState> buffer = null)
         {
             buffer = EnsureBufferValid(buffer, Messages.Count);
 

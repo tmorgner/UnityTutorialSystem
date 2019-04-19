@@ -13,7 +13,7 @@ namespace UnityTutorialSystem.Tutorial
         [SerializeField] EventStreamTreeModelBuilder modelSource;
         [SerializeField] TutorialEventTreeView treeView;
 
-        void Awake()
+        void Start()
         {
             treeView.Model = modelSource.Model;
         }

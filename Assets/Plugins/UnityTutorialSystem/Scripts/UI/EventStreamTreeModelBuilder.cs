@@ -80,6 +80,17 @@ namespace UnityTutorialSystem.UI
         {
             started = true;
 
+            RebuildModel();
+        }
+
+        /// <summary>
+        ///  Rebuilds the complete tree model. Use this only as last resort after
+        ///  you removed or added EventMessageAggregator instances in the scene.
+        ///  But try to keep all EventMessageAggregator definitions static if
+        ///  humanly possible, its better for performance and every one involved. 
+        /// </summary>
+        public void RebuildModel()
+        {
             var data = CollectTreeData();
             PrintTree(data);
             (rootNode, nodeMapper) = CreateTreeNodes(data);

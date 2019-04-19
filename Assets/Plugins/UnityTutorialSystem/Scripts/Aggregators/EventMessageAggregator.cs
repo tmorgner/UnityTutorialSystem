@@ -82,7 +82,7 @@ namespace UnityTutorialSystem.Aggregators
         /// </summary>
         /// <param name="buffer">A receive buffer. If null, a new list will be created. If the list is non-empty, the list will be cleared.</param>
         /// <returns>The buffer provided or a new list if the buffer given is null.</returns>
-        public abstract List<EventMessageState> ListEvents(List<EventMessageState> buffer);
+        public abstract List<EventMessageState> ListEvents(List<EventMessageState> buffer = null);
 
         /// <summary>
         ///   Returns the current state of the matching process. 

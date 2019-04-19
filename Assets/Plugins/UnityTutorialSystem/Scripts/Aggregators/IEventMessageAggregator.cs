@@ -46,6 +46,6 @@ namespace UnityTutorialSystem.Aggregators
         /// </summary>
         /// <param name="buffer">A receive buffer. If null, a new list will be created. If the list is non-empty, the list will be cleared.</param>
         /// <returns>The buffer provided or a new list if the buffer given is null.</returns>
-        List<EventMessageState> ListEvents(List<EventMessageState> buffer);
+        List<EventMessageState> ListEvents(List<EventMessageState> buffer = null);
     }
 }

@@ -46,7 +46,7 @@ namespace UnityTutorialSystem.UI.Trees
     ///   the element at N+1 is a child of the tree node found at level N.
     /// </summary>
     /// <typeparam name="TNode">The TreeNode content type</typeparam>
-    public class TreePath<TNode> : IReadOnlyList<TNode>, IEquatable<TreePath<TNode>>
+    public sealed class TreePath<TNode> : IReadOnlyList<TNode>, IEquatable<TreePath<TNode>>
     {
         readonly TNode[] backend;
 
