@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
@@ -233,7 +234,7 @@ namespace UnityTutorialSystem.UI
         /// </summary>
         /// <param name="data">The list of potential root nodes</param>
         /// <returns>The created tree node and a mapping of the created node and all its child nodes and their respective sources.</returns>
-        static (EventStreamTreeModelData, Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>) CreateTreeNodes(List<ExpectedStates> data)
+        static ValueTuple<EventStreamTreeModelData, Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>> CreateTreeNodes(List<ExpectedStates> data)
         {
             var roots = data.Where(s => !s.IsDependency).ToList();
             var nodes = new Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>();
@@ -247,7 +248,7 @@ namespace UnityTutorialSystem.UI
             }
 
             var treeModelData = new EventStreamTreeModelData(null, false, true, childStates);
-            return (treeModelData, nodes);
+            return ValueTuple.Create(treeModelData, nodes);
         }
 
         /// <summary>
@@ -280,7 +281,7 @@ namespace UnityTutorialSystem.UI
         ///     The created tree node and a mapping of the created node and all its
         ///     child nodes and their respective sources.
         /// </returns>
-        static (EventStreamTreeModelData, Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>) AddTree(ExpectedStates state)
+        static ValueTuple<EventStreamTreeModelData, Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>> AddTree(ExpectedStates state)
         {
             var childStates = new List<EventStreamTreeModelData>();
             var nodeMapper = new Dictionary<EventMessageAggregatorStatePublisher, EventStreamTreeModelData>();
